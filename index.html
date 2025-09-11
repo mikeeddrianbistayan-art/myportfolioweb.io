@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Portfolio – Simple & Unique</title>
+  <meta name="description" content="A clean, unique, and responsive personal portfolio." />
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom font for a refined look */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+    :root{
+      --brand:#6C5CE7;      /* Primary accent */
+      --brand-2:#00D1B2;    /* Secondary accent */
+      --ink:#0B1021;        /* Headings */
+      --muted:#6B7280;      /* Body */
+      --surface:#0F172A;    /* Background */
+      --card:#121B39;       /* Cards */
+      --ring: rgba(108,92,231,.3);
+    }
+    html,body{font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background: var(--surface); color: #E5E7EB;}
+    /* Unique animated background */
+    @keyframes floatBlobs {
+      0%   { transform: translate3d(-2%, -1%, 0) scale(1); }
+      50%  { transform: translate3d(2%, 1.5%, 0) scale(1.02); }
+      100% { transform: translate3d(-2%, -1%, 0) scale(1); }
+    }
+    @keyframes tintShift {
+      0%   { filter: hue-rotate(0deg) saturate(1); }
+      50%  { filter: hue-rotate(18deg) saturate(1.05); }
+      100% { filter: hue-rotate(0deg) saturate(1); }
+    }
+    body::before{
+      content:"";
+      position:fixed; inset:0; z-index:-2;
+      background:
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 40 40"><circle cx="1" cy="1" r="1" fill="rgba(255,255,255,0.04)"/></svg>') repeat,
+        radial-gradient(1200px 800px at 80% -10%, rgba(0,209,178,0.18), transparent 60%),
+        radial-gradient(1000px 700px at -10% 20%, rgba(108,92,231,0.18), transparent 60%),
+        linear-gradient(180deg, #0F172A 0%, #0B1021 100%);
+      background-size:40px 40px, auto, auto, auto;
+    }
+    body::after{
+      content:"";
+      position:fixed; inset:0; z-index:-1; pointer-events:none;
+      background:
+        radial-gradient(220px 200px at 20% 30%, rgba(108,92,231,0.35), transparent 60%),
+        radial-gradient(240px 220px at 80% 25%, rgba(0,209,178,0.35), transparent 60%),
+        radial-gradient(260px 240px at 30% 80%, rgba(255,255,255,0.06), transparent 60%);
+      mix-blend-mode: screen;
+      animation: floatBlobs 22s ease-in-out infinite alternate, tintShift 28s linear infinite;
+    }
+    /* Fancy focus ring */
+    .focus-ring:focus{
+      outline: none;
+      box-shadow: 0 0 0 6px var(--ring);
+    }
+    /* Smooth section reveal */
+    .reveal { opacity:0; transform: translateY(12px); transition: opacity .6s ease, transform .6s ease;}
+    .reveal.in { opacity:1; transform: translateY(0);}
+    /* Subtle card hover */
+    .lift { transition: transform .25s ease, box-shadow .25s ease;}
+    .lift:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,.25);}
+    /* Tag style */
+    .chip{ background: rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.08); }
+    /* Smooth scroll */
+    html{ scroll-behavior:smooth; }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <header class="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/5 bg-white/0 border-b border-white/10">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#" class="group inline-flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-[var(--brand)] to-[var(--brand-2)] grid place-items-center text-white font-extrabold">M</div>
+        <span class="text-white/90 group-hover:text-white transition font-semibold">Mike Eddrian</span>
+      </a>
+
+      <nav class="hidden sm:flex items-center gap-2">
+        <a href="#about" class="px-3 py-2 rounded-lg hover:bg-white/10 transition text-white/80 hover:text-white">About</a>
+        <a href="#projects" class="px-3 py-2 rounded-lg hover:bg-white/10 transition text-white/80 hover:text-white">Projects</a>
+        <a href="#skills" class="px-3 py-2 rounded-lg hover:bg-white/10 transition text-white/80 hover:text-white">Skills</a>
+        <a href="#contact" class="px-3 py-2 rounded-lg hover:bg-white/10 transition text-white/80 hover:text-white">Contact</a>
+      </nav>
+
+      <a href="#contact" class="focus-ring rounded-xl px-4 py-2 bg-[var(--brand)] hover:bg-indigo-500 transition text-white font-semibold shadow-lg shadow-indigo-900/30">
+        Get in touch
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative">
+    <div class="max-w-6xl mx-auto px-6 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
+      <div class="reveal in">
+        <div class="inline-flex items-center gap-2 chip px-3 py-1 rounded-full text-xs text-white/80 mb-5">
+          <span>Available for freelance</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-[var(--brand-2)] animate-pulse"></span>
+        </div>
+        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-white">
+          Crafting clean, human-centered web experiences
+        </h1>
+        <p class="text-white/70 mt-5 max-w-xl">
+          I’m a frontend-focused developer who blends thoughtful design with reliable, accessible interfaces. Here’s a snapshot of my work and what I do best.
+        </p>
+
+        <div class="mt-8 flex flex-wrap items-center gap-3">
+          <a href="#projects" class="focus-ring rounded-xl px-5 py-3 bg-white text-[var(--surface)] font-semibold hover:opacity-90 transition">
+            View projects
+          </a>
+          <a href="#about" class="focus-ring rounded-xl px-5 py-3 bg-white/10 text-white hover:bg-white/15 transition font-semibold">
+            Learn more
+          </a>
+        </div>
+
+        <div class="mt-8 flex flex-wrap gap-2">
+          <span class="chip px-3 py-1 rounded-full text-xs text-white/80">Responsive Design</span>
+          <span class="chip px-3 py-1 rounded-full text-xs text-white/80">Accessibility</span>
+          <span class="chip px-3 py-1 rounded-full text-xs text-white/80">Animations</span>
+          <span class="chip px-3 py-1 rounded-full text-xs text-white/80">Performance</span>
+        </div>
+      </div>
+
+      <!-- Decorative avatar card -->
+      <div class="reveal md:justify-self-end">
+        <div class="lift relative bg-[var(--card)] border border-white/10 rounded-3xl p-6 md:p-8 max-w-md w-full">
+          <!-- Abstract avatar using SVG -->
+          <svg viewBox="0 0 300 220" class="w-full h-auto">
+            <defs>
+              <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#6C5CE7"/>
+                <stop offset="100%" stop-color="#00D1B2"/>
+              </linearGradient>
+            </defs>
+            <rect x="0" y="0" width="300" height="220" rx="24" fill="url(#g1)" opacity="0.08"/>
+            <circle cx="90" cy="90" r="40" fill="#ffffff" opacity="0.15"/>
+            <rect x="50" y="140" width="160" height="50" rx="20" fill="#ffffff" opacity="0.12"/>
+            <circle cx="210" cy="70" r="22" fill="#00D1B2" opacity="0.6"/>
+            <circle cx="235" cy="110" r="10" fill="#6C5CE7" opacity="0.6"/>
+          </svg>
+          <div class="mt-4">
+            <h3 class="font-bold text-white text-lg">Designer • Developer</h3>
+            <p class="text-white/70 text-sm">Based anywhere remote</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-16 md:py-24">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-10 items-start">
+      <div class="md:col-span-1 reveal">
+        <h2 class="text-2xl md:text-3xl font-extrabold text-white">About me</h2>
+        <p class="text-white/70 mt-3">A quick snapshot of my focus and approach.</p>
+      </div>
+      <div class="md:col-span-2 space-y-6 reveal">
+        <p class="text-white/80">
+          I build interfaces that feel effortless. My process blends research, prototyping, and thoughtful details to deliver results that look great and work beautifully on every device.
+        </p>
+        <div class="grid sm:grid-cols-3 gap-4">
+          <div class="bg-[var(--card)] border border-white/10 rounded-2xl p-5 lift">
+            <div class="text-sm text-white/60">Experience</div>
+            <div class="text-2xl font-bold mt-1">4+ Years</div>
+          </div>
+          <div class="bg-[var(--card)] border border-white/10 rounded-2xl p-5 lift">
+            <div class="text-sm text-white/60">Projects</div>
+            <div class="text-2xl font-bold mt-1">20+ Shipped</div>
+          </div>
+          <div class="bg-[var(--card)] border border-white/10 rounded-2xl p-5 lift">
+            <div class="text-sm text-white/60">Focus</div>
+            <div class="text-2xl font-bold mt-1">UI • Frontend</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="py-16 md:py-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex items-end justify-between gap-6">
+        <div class="reveal">
+          <h2 class="text-2xl md:text-3xl font-extrabold text-white">Selected projects</h2>
+          <p class="text-white/70 mt-3">A few highlights that show my range.</p>
+        </div>
+        <a href="#contact" class="hidden sm:inline-block focus-ring rounded-xl px-4 py-2 bg-white/10 text-white hover:bg-white/15 transition">
+          Let’s collaborate
+        </a>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 mt-10">
+        <!-- Project 1 -->
+        <article class="reveal bg-[var(--card)] border border-white/10 rounded-2xl p-5 lift">
+          <div class="h-40 rounded-xl mb-4 relative overflow-hidden">
+            <!-- Abstract image via gradient -->
+            <div class="absolute inset-0 bg-gradient-to-br from-[var(--brand)] to-[var(--brand-2)] opacity-90"></div>
+            <div class="absolute inset-0" style="background-image: radial-gradient(transparent 30%, rgba(0,0,0,.35));"></div>
+          </div>
+          <h3 class="text-lg font-bold">Interface Playground</h3>
+          <p class="text-white/70 text-sm mt-1">Micro-interactions and motion studies to enhance usability.</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="chip px-2.5 py-1 rounded-full text-xs text-white/80">Animations</span>
+            <span class="chip px-2.5 py-1 rounded-full text-xs text-white/80">Accessibility</span>
+          </div>
+          <button data-project="1" class="mt-5 focus-ring w-full rounded-xl px-4 py-2 bg-white text-[var(--surface)] font-semibold hover:opacity-90 transition open-project">
+            View details
+          </button>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="reveal bg-[var(--card)] border border-white/10 rounded-2xl p-5 lift">
+          <div class="h-40 rounded-xl mb-4 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-emerald-400 to-blue-500 opacity-90"></div>
+            <div class="absolute inset-0" style="background-image: radial-gradient(transparent 30%, rgba(0,0,0,.35));"></div>
+          </div>
+          <h3 class="text-lg font-bold">Dashboard Lite</h3>
+          <p class="text-white/70 text-sm mt-1">A clean analytics dashboard with smart defaults.</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="chip px-2.5 py-1 rounded-full text-xs text-white/80">Charts</span>
+            <span class="chip px-2.5 py-1 rounded-full text-xs text-white/80">Performance</span>
+          </div>
+          <button data-project="2" class="mt-5 focus-ring w-full rounded-xl px-4 py-2 bg-white text-[var(--surface)] font-semibold hover:opacity-90 transition open-project">
+            View details
+          </button>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="reveal bg-[var(--card)] border border-white/10 rounded-2xl p-5 lift">
+          <div class="h-40 rounded-xl mb-4 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-pink-400 to-rose-500 opacity-90"></div>
+            <div class="absolute inset-0" style="background-image: radial-gradient(transparent 30%, rgba(0,0,0,.35));"></div>
+          </div>
+          <h3 class="text-lg font-bold">Brand Microsite</h3>
+          <p class="text-white/70 text-sm mt-1">A tiny site with personality and crisp typography.</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="chip px-2.5 py-1 rounded-full text-xs text-white/80">Typography</span>
+            <span class="chip px-2.5 py-1 rounded-full text-xs text-white/80">SEO</span>
+          </div>
+          <button data-project="3" class="mt-5 focus-ring w-full rounded-xl px-4 py-2 bg-white text-[var(--surface)] font-semibold hover:opacity-90 transition open-project">
+            View details
+          </button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="py-16 md:py-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-2xl md:text-3xl font-extrabold text-white reveal">Skills & tools</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-8">
+        <div class="reveal bg-[var(--card)] border border-white/10 rounded-2xl p-5 lift">
+          <div class="text-sm text-white/60">Core</div>
+          <ul class="mt-2 space-y-1 text-white/80 text-sm">
+            <li>Semantic UI</li>
+            <li>Responsive Layouts</li>
+            <li>Accessibility</li>
+          </ul>
+        </div>
+        <div class="reveal bg-[var(--card)] border border-white/10 rounded-2xl p-5 lift">
+          <div class="text-sm text-white/60">Frontend</div>
+          <ul class="mt-2 space-y-1 text-white/80 text-sm">
+            <li>Components</li>
+            <li>State & Interactions</li>
+            <li>Animations</li>
+          </ul>
+        </div>
+        <div class="reveal bg-[var(--card)] border border-white/10 rounded-2xl p-5 lift">
+          <div class="text-sm text-white/60">Design</div>
+          <ul class="mt-2 space-y-1 text-white/80 text-sm">
+            <li>Prototyping</li>
+            <li>Typography</li>
+            <li>Color Systems</li>
+          </ul>
+        </div>
+        <div class="reveal bg-[var(--card)] border border-white/10 rounded-2xl p-5 lift">
+          <div class="text-sm text-white/60">Workflow</div>
+          <ul class="mt-2 space-y-1 text-white/80 text-sm">
+            <li>Documentation</li>
+            <li>Fast Iteration</li>
+            <li>Testing mindset</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-16 md:py-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-2xl md:text-3xl font-extrabold text-white reveal">What people say</h2>
+      <div class="grid md:grid-cols-3 gap-6 mt-8">
+        <figure class="reveal bg-[var(--card)] border border-white/10 rounded-2xl p-5 lift">
+          <blockquote class="text-white/80">“Fast, reliable, and delightful to work with. The end result was polished and accessible.”</blockquote>
+          <figcaption class="text-white/60 text-sm mt-3">— Alex P., Product Lead</figcaption>
+        </figure>
+        <figure class="reveal bg-[var(--card)] border border-white/10 rounded-2xl p-5 lift">
+          <blockquote class="text-white/80">“Brought our ideas to life with thoughtful details and clear communication.”</blockquote>
+          <figcaption class="text-white/60 text-sm mt-3">— Casey R., Founder</figcaption>
+        </figure>
+        <figure class="reveal bg-[var(--card)] border border-white/10 rounded-2xl p-5 lift">
+          <blockquote class="text-white/80">“A rare mix of design taste and technical skill.”</blockquote>
+          <figcaption class="text-white/60 text-sm mt-3">— Morgan S., Designer</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-16 md:py-24">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-start">
+      <div class="reveal">
+        <h2 class="text-2xl md:text-3xl font-extrabold text-white">Let’s connect</h2>
+        <p class="text-white/70 mt-3">Tell me about your project, timeline, and goals. I’ll reply within 1–2 days.</p>
+        <div class="mt-6 space-y-3 text-white/80">
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 rounded-xl grid place-items-center bg-white/10">👋</span>
+            <span>Based remote • Open to collabs</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 rounded-xl grid place-items-center bg-white/10">📧</span>
+            <a href="mailto:mikeeddrian@example.com" class="underline decoration-white/30 hover:decoration-white">mikeeddrian@example.com</a>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 rounded-xl grid place-items-center bg-white/10">🧵</span>
+            <a href="#" class="underline decoration-white/30 hover:decoration-white">Social link</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Demo contact form (marked clearly as demo) -->
+      <form id="contactForm" class="reveal bg-[var(--card)] border border-white/10 rounded-2xl p-6 md:p-8 space-y-4" aria-describedby="formNote">
+        <div id="formNote" class="chip px-3 py-2 rounded-lg text-xs text-white/80">Demo only — sends nowhere</div>
+        <div>
+          <label class="block text-sm text-white/70 mb-1">Name</label>
+          <input required type="text" placeholder="Your name" class="focus-ring w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 placeholder:white/40 text-white">
+        </div>
+        <div>
+          <label class="block text-sm text-white/70 mb-1">Email</label>
+          <input required type="email" placeholder="you@example.com" class="focus-ring w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 placeholder:white/40 text-white">
+        </div>
+        <div>
+          <label class="block text-sm text-white/70 mb-1">Message</label>
+          <textarea required rows="4" placeholder="What would you like to build?" class="focus-ring w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 placeholder:white/40 text-white"></textarea>
+        </div>
+        <button type="submit" class="w-full focus-ring rounded-xl px-4 py-3 bg-[var(--brand)] hover:bg-indigo-500 transition text-white font-semibold">
+          Send message (Demo)
+        </button>
+        <p id="formStatus" class="hidden text-sm text-white/80"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/10">
+    <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-white/60 text-sm">© <span id="year"></span> Mike Eddrian. All rights reserved.</p>
+      <div class="flex gap-3">
+        <a href="#about" class="px-3 py-2 rounded-lg hover:bg-white/10 transition text-white/80 hover:text-white">About</a>
+        <a href="#projects" class="px-3 py-2 rounded-lg hover:bg-white/10 transition text-white/80 hover:text-white">Projects</a>
+        <a href="#contact" class="px-3 py-2 rounded-lg hover:bg-white/10 transition text-white/80 hover:text-white">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Project Modal -->
+  <div id="projectModal" class="fixed inset-0 z-50 hidden">
+    <div class="absolute inset-0 bg-black/60"></div>
+    <div class="relative max-w-2xl mx-auto mt-20 bg-[var(--card)] border border-white/10 rounded-3xl p-6 md:p-8 shadow-2xl">
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <h3 id="modalTitle" class="text-xl font-bold">Project title</h3>
+          <p id="modalSubtitle" class="text-white/70 mt-1">Short description</p>
+        </div>
+        <button id="closeModal" class="focus-ring rounded-xl px-3 py-2 bg-white/10 hover:bg-white/15 text-white">Close</button>
+      </div>
+      <div class="mt-6 space-y-4">
+        <div class="h-40 rounded-xl relative overflow-hidden">
+          <div id="modalVisual" class="absolute inset-0 bg-gradient-to-br from-[var(--brand)] to-[var(--brand-2)] opacity-90"></div>
+          <div class="absolute inset-0" style="background-image: radial-gradient(transparent 30%, rgba(0,0,0,.35));"></div>
+        </div>
+        <p id="modalBody" class="text-white/80">
+          Deeper look into the problem, process, and outcome. Key learnings and impact are summarized here.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Reveal on scroll
+    const reveals = Array.from(document.querySelectorAll('.reveal'));
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      })
+    }, { threshold:.12 });
+    reveals.forEach(el=>io.observe(el));
+
+    // Project modal content
+    const projectData = {
+      1:{
+        title:'Interface Playground',
+        subtitle:'Micro-interactions and motion studies to enhance usability.',
+        colors:['from-[var(--brand)]','to-[var(--brand-2)]'],
+        body:'Exploration of small, meaningful interactions that guide users through tasks and reduce cognitive load. Focus on motion rhythm, timing, and clarity.'
+      },
+      2:{
+        title:'Dashboard Lite',
+        subtitle:'A clean analytics dashboard with smart defaults.',
+        colors:['from-emerald-400','to-blue-500'],
+        body:'Lightweight analytics with strong hierarchy and at-a-glance insights. Emphasis on dependable components and responsive behavior.'
+      },
+      3:{
+        title:'Brand Microsite',
+        subtitle:'A tiny site with personality and crisp typography.',
+        colors:['from-pink-400','to-rose-500'],
+        body:'Story-driven single page with expressive visuals and clear calls to action. Balanced type scale and color for a memorable feel.'
+      }
+    };
+
+    const modal = document.getElementById('projectModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalSubtitle = document.getElementById('modalSubtitle');
+    const modalBody = document.getElementById('modalBody');
+    const modalVisual = document.getElementById('modalVisual');
+    const closeModal = document.getElementById('closeModal');
+
+    function openModal(id){
+      const d = projectData[id];
+      modalTitle.textContent = d.title;
+      modalSubtitle.textContent = d.subtitle;
+      modalBody.textContent = d.body;
+
+      // update gradient colors cleanly
+      modalVisual.className = ''; // reset
+      modalVisual.classList.add('absolute','inset-0','bg-gradient-to-br','opacity-90', ...d.colors);
+
+      modal.classList.remove('hidden');
+    }
+    function hideModal(){ modal.classList.add('hidden'); }
+
+    document.querySelectorAll('.open-project').forEach(btn=>{
+      btn.addEventListener('click', e=>{
+        const id = e.currentTarget.getAttribute('data-project');
+        openModal(id);
+      });
+    });
+    closeModal.addEventListener('click', hideModal);
+    modal.addEventListener('click', (e)=>{ if(e.target === modal) hideModal(); });
+
+    // Demo contact form (no real sending)
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('formStatus');
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      status.textContent = 'Thanks! This is a demo, so your message was not sent.';
+      status.classList.remove('hidden');
+    });
+  </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97d5d1fec27bbc3d',t:'MTc1NzU3OTYwNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
